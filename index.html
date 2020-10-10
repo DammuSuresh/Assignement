@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAERSK</title>
+    <style>
+        .iconcolorDesign{
+            background-color: #6F98A8;
+            height:100px;
+		    width:100px;
+            color: #fff;
+            font-size: 1rem;
+            display: inline-block;
+            position: relative;           
+            box-shadow: 1px 1px 0px 2px #d6d4d4;
+        }
+       
+        .backroundtheme{
+            background-color: #EFEFEF;
+        }
+        .btn-container{
+            display: inline-block;
+            width: 200px;
+        }
+        .btn-container button{
+            width: 60%;
+            background: #72C3DC;
+            border-radius: 4px;
+            color: white;
+            font-weight: 700;
+            border: none;
+            padding: 6px;
+            margin-bottom: 10px;
+            box-shadow: 0px 0px 0px 2px #2F454E;
+        }
+        .break{
+            width: 100%;
+            display: block;
+        }
+        body{
+            margin: 0px;
+        }
+        .tiles{
+            padding: 10px;
+            margin: 0px;
+        }
+        @media(min-width:700px){
+            .iconcolorDesign{
+            height:100px !important;
+		    width:100px !important;
+        }
+        
+        .iconcolorDesign span{
+            font-size: 57px;
+            display: block;
+            text-align: center;
+            padding-top: 17px;
+        }
+        .headerPart{
+            width: 307px;
+            text-align:center; 
+        }
+        #shuffle{
+            width: 307px;
+            display: inline-block;
+            float:left;
+        }
+        }
+        @media(max-width: 480px){
+            .btn-container {
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+            }
+            .headerPart{
+                position: fixed;
+                top:0px;
+                right:0px;
+                z-index: 10;
+                left:0px;
+                height: 15px;
+                padding: 10px;
+                text-align:center;
+                background:gray;
+                color:white;
+                margin: 0px;
+            }
+            .headerPart.new{
+                position: relative;
+                color: black;
+                background: none;
+                padding: 0px;
+                font-size: 12px;
+            }
+            .btn-container button{
+                width: 100px;
+            }
+            .tiles{
+                margin-top: 40px;
+            }
+            .iconcolorDesign{
+                width: 200px;
+                height: 50px;
+                display: block;
+                position: relative;
+                margin-bottom: 10px;
+            }
+            .iconcolorDesign>span{
+                position: absolute;
+                left: 36px;
+                color: black;
+                top: 16px;
+            }
+            .iconcolorDesign:before{
+                content: "";
+                background: white;
+                top: 0px;
+                right: 0px;
+                left: 18px;
+                bottom: 0px;
+                display: block;
+                position: absolute;
+            }
+        }
+    </style>
+    
+</head>
+<body class="backroundtheme" onresize="resizeContent()">
+   <div class="tiles">
+    <p class="headerPart">Shuffle and Sort</p>
+    <div class="btn-container">
+        <button onclick="fnshuffleArray()">Shuffle</button>
+        <button onclick="fnSortArray()">Sort</button>
+    </div>
+    <div id="shuffle"></div>  
+    <p class="headerPart new">Shuffle and Sort by Suresh D</p>
+   </div>
+</body>
+<script>
+    function resizeContent(){
+        location.reload();
+      
+    }
+    var array = [1,2,3,4,5,6,7,8,9];
+var classes = [{"color":"#2B8EAD"},{"color":"#6F98A8"},{"color":"#BFBFBF"},{"color":"#2F454E"},{"color":"#2B8EAD"},{"color":"#6F98A8"},{"color":"#BFBFBF"},{"color":"#2F454E"},{"color":"#2B8EAD"},{"color":"#6F98A8"}];
+let i;
+
+function fnCreateEle(arr){
+    let mapNewArr = "";
+    arr.map((ele,index)=>
+{
+    
+        mapNewArr = mapNewArr+  `<div style='background:${classes[index].color};width:${(window.innerWidth - 20) + "px"}' class="iconcolorDesign"><span>${ele}</span></div>`
+    
+ }
+ );
+
+ document.getElementById('shuffle').innerHTML = mapNewArr;
+}
+
+ function fnshuffleArray(){  
+  let newPos,temp;
+  let length = array.length;
+  for(let i=length-1; i>0; i--){
+    newPos = Math.floor(Math.random()*(i+1));
+    temp = array[i];
+    array[i]=array[newPos];
+    array[newPos]= temp;
+  }
+    fnCreateEle(array);
+ }
+ function fnSortArray(){
+     array = array.sort((item,item1)=>item-item1);
+     fnCreateEle(array);
+ }
+ fnCreateEle(array);
+</script>
+</html>
