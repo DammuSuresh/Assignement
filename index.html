@@ -139,19 +139,15 @@
 </body>
 <script>
     function resizeContent(){
-        location.reload();
-      
+        location.reload();      
     }
-    var array = [1,2,3,4,5,6,7,8,9];
-var classes = [{"color":"#2B8EAD"},{"color":"#6F98A8"},{"color":"#BFBFBF"},{"color":"#2F454E"},{"color":"#2B8EAD"},{"color":"#6F98A8"},{"color":"#BFBFBF"},{"color":"#2F454E"},{"color":"#2B8EAD"},{"color":"#6F98A8"}];
-let i;
-
+//var array = [1,2,3,4,5,6,7,8,9];
+var array = [{value:1,"color":"#6F98A8"},{value:2,"color":"#2B8EAD"},{value:3,"color":"#2F454E"},{value:4,"color":"#2B8EAD"},{value:5,"color":"#2F454E"},{value:6,"color":"#BFBFBF"},{value:7,"color":"#BFBFBF"},{value:8,"color":"#6F98A8"},{value:9,"color":"#2F454E"}];
 function fnCreateEle(arr){
     let mapNewArr = "";
     arr.map((ele,index)=>
-{
-    
-        mapNewArr = mapNewArr+  `<div style='background:${classes[index].color};width:${(window.innerWidth - 20) + "px"}' class="iconcolorDesign"><span>${ele}</span></div>`
+{    
+        mapNewArr = mapNewArr+  `<div style='background:${ele.color};width:${(window.innerWidth - 20) + "px"}' class="iconcolorDesign"><span>${ele.value}</span></div>`
     
  }
  );
@@ -171,7 +167,7 @@ function fnCreateEle(arr){
     fnCreateEle(array);
  }
  function fnSortArray(){
-     array = array.sort((item,item1)=>item-item1);
+     array = array.sort((item,item1)=>item.value-item1.value);
      fnCreateEle(array);
  }
  fnCreateEle(array);
